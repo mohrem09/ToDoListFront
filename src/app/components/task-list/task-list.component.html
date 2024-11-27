@@ -1,0 +1,48 @@
+<div class="task-list">
+  <h1>Task Manager</h1>
+  <ul>
+    <li *ngFor="let task of tasks">
+      <h3>{{ task.title }}</h3>
+      <p>{{ task.description }}</p>
+      <button (click)="deleteTask(task.id)">Supprimer</button>
+    </li>
+  </ul>
+</div>
+<!-- Formulaire pour ajouter une tâche -->
+<div class="myForm">
+  <form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+    <label for="title">Titre :</label>
+    <input
+      type="text"
+      id="title"
+      required
+      [(ngModel)]="newTask.title"
+      name="title"
+      #title="ngModel"
+    />
+
+    <label for="description">Description :</label>
+    <textarea
+      id="description"
+      required
+      [(ngModel)]="newTask.description"
+      name="description"
+    ></textarea>
+
+    <label for="priority">Priorité :</label>
+    <select
+      id="priority"
+      required
+      [(ngModel)]="newTask.priority"
+      name="priority"
+    >
+      <option value="Low">Faible</option>
+      <option value="Medium">Moyenne</option>
+      <option value="High">Haute</option>
+    </select>
+
+    <button type="submit" [disabled]="!taskForm.form.valid">
+      Ajouter une tâche
+    </button>
+  </form>
+</div>

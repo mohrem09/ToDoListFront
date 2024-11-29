@@ -1,0 +1,36 @@
+<div class="session-container">
+  <h1>Sessions collaboratives</h1>
+
+  <!-- Formulaire pour créer une session -->
+  <div class="create-session">
+    <button (click)="createSession()">Créer une nouvelle session</button>
+  </div>
+
+  <!-- Liste des sessions actuelles -->
+  <div class="session-list">
+    <h2>Vos sessions</h2>
+    <ul>
+      <li *ngFor="let session of sessions">
+        <h3>{{ session.name }}</h3>
+        <p>Clé d'accès : {{ session.accessKey }}</p>
+        <button (click)="joinSession(session.id)">Rejoindre</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Formulaire pour rejoindre une session avec une clé -->
+  <div class="join-session">
+    <h2>Rejoindre une session</h2>
+    <form (ngSubmit)="joinWithKey()" #joinForm="ngForm">
+      <label for="accessKey">Clé d'accès :</label>
+      <input
+        type="text"
+        id="accessKey"
+        required
+        [(ngModel)]="accessKey"
+        name="accessKey"
+      />
+      <button type="submit">Rejoindre</button>
+    </form>
+  </div>
+</div>

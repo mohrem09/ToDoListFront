@@ -14,6 +14,7 @@ import {
   LoginComponent,
 } from './components/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { SessionComponent } from './session/session.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './home/home.component';
     SignUpComponent,
     LoginComponent,
     HomeComponent,
+    SessionComponent,
   ],
   imports: [
     ReactiveFormsModule,

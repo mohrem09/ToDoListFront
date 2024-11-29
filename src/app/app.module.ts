@@ -4,19 +4,40 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { FormsModule } from '@angular/forms'; // Importer FormsModule
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SignUpComponent } from './components/signup/signup.component';
+
+import {
+  AuthInterceptor,
+  LoginComponent,
+} from './components/login/login.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, TaskListComponent],
+  declarations: [
+    AppComponent,
+    TaskListComponent,
+    SignUpComponent,
+    LoginComponent,
+    HomeComponent,
+  ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule, // Ajouter FormsModule ici
     // Ajout ici
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

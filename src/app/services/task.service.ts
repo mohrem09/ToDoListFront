@@ -6,23 +6,23 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:3000/tasks'; // URL du backend
+  private apiUrl = 'http://localhost:3000'; // L'URL de votre API backend
 
   constructor(private http: HttpClient) {}
 
   getTasks(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.http.get(`${this.apiUrl}/tasks`);
   }
 
   createTask(task: any): Observable<any> {
-    return this.http.post(this.apiUrl, task);
+    return this.http.post(`${this.apiUrl}/tasks`, task);
   }
 
-  updateTask(id: number, task: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, task);
+  deleteTask(taskId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/tasks/${taskId}`);
   }
 
-  deleteTask(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  updateTask(taskId: number, task: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/tasks/${taskId}`, task);
   }
 }
